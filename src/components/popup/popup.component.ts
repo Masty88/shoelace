@@ -212,9 +212,7 @@ export default class SlPopup extends ShoelaceElement {
 
     // Start the positioner after the first update
     await this.updateComplete;
-    if (this.active) {
-      this.start();
-    }
+    this.start();
   }
 
   disconnectedCallback() {
@@ -274,8 +272,8 @@ export default class SlPopup extends ShoelaceElement {
   }
 
   private start() {
-    // We can't start the positioner without an anchor
-    if (!this.anchorEl) {
+    // We can't start the positioner without an anchor or when the popup is inactive
+    if (!this.anchorEl || !this.active) {
       return;
     }
 
